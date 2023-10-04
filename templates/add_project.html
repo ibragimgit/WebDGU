@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"],
+        .btn-link {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button[type="submit"]:hover,
+        .btn-link:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добавить новый проект</h1>
+    <form method="POST">
+        <label for="full_name">ФИО ученика:</label>
+        <input type="text" name="full_name" id="full_name" required><br>
+        <label for="passport_number">Номер паспорта:</label>
+        <input type="text" name="passport_number" id="passport_number" required><br>
+        <label for="course">Курс:</label>
+        <input type="text" name="course" id="course" required><br>
+        <label for="group">Группа:</label>
+        <input type="text" name="group" id="group" required><br>
+        <label for="project_name">Название проекта:</label>
+        <input type="text" name="project_name" id="project_name" required><br>
+        <label for="project_content">Содержание проекта:</label>
+        <textarea name="project_content" id="project_content" required></textarea><br>
+        <button type="submit">Добавить</button>
+    </form>
+    <br>
+    <a class="btn-link" href="/projects">Вернуться к проектам</a>
+</body>
+</html>

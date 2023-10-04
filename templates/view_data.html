@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            padding: 8px;
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Пользователи и их проекты</h1>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td><button onclick="deleteRow(this)">Удалить</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function deleteRow(button) {
+            var row = button.parentNode.parentNode;
+            var table = document.getElementById("userTable");
+            table.deleteRow(row.rowIndex);
+
+            // Сохраняем индекс удаленной строки в localStorage
+            var deletedRows = JSON.parse(localStorage.getItem("deletedRows")) || [];
+            deletedRows.push(row.rowIndex);
+            localStorage.setItem("deletedRows", JSON.stringify(deletedRows));
+        }
+
+        // Проверяем localStorage и удаляем строки, которые были удалены ранее
+        var deletedRows = JSON.parse(localStorage.getItem("deletedRows")) || [];
+        var table = document.getElementById("userTable");
+        deletedRows.forEach(function(rowIndex) {
+            table.deleteRow(rowIndex);
+        });
+    </script>
+</body>
+
+</html>

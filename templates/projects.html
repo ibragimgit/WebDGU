@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список проектов</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container my-5">
+    <h1 class="mb-4 text-center">Список проектов</h1>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center">Логин</th>
+                <th class="text-center">ФИО</th>
+                <th class="text-center">Курс</th>
+                <th class="text-center">Группа</th>
+                <th class="text-center">Название проекта</th>
+                <th class="text-center">Содержимое проекта</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+                <tr>
+                    <td class="text-center">{{ project[1] }}</td>
+                    <td class="text-center">{{ project[2] }}</td>
+                    <td class="text-center">{{ project[4] }}</td>
+                    <td class="text-center">{{ project[5] }}</td>
+                    <td class="text-center">{{ project[6] }}</td>
+                    <td class="text-center">
+                        <button class="open-button btn btn-primary" data-content="{{ project[7] }}">Открыть</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Содержание проекта</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $(".open-button").click(function(){
+            var content = $(this).data("content");
+            $("#projectModal .modal-body").html(content);
+            $("#projectModal").modal("show");
+        });
+    });
+</script>
+
+</body>
+</html>
